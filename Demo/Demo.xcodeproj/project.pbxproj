@@ -10,6 +10,9 @@
 		60A39C380BC7597C2C6DC6F3 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCD15E287CE6EE05ED91F76 /* Pods_Demo.framework */; };
 		60C6F410F6AECC0A42C9611A /* Pods_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CE18D44ED3F993AFDC0752 /* Pods_DemoUITests.framework */; };
 		7AA37234146E4774D5961778 /* Pods_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E496B8E391B8E5D3D16037 /* Pods_DemoTests.framework */; };
+		9FB4506D1ED7C88400B92272 /* RKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4506C1ED7C88400B92272 /* RKError.swift */; };
+		9FB4506F1ED8088900B92272 /* RKCredentialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4506E1ED8088900B92272 /* RKCredentialTests.swift */; };
+		9FB450721ED80FBB00B92272 /* RKOAuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB450711ED80FBB00B92272 /* RKOAuthManagerTests.swift */; };
 		9FD074CC1ED4352C00473CEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD074CB1ED4352C00473CEE /* AppDelegate.swift */; };
 		9FD074CE1ED4352C00473CEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD074CD1ED4352C00473CEE /* ViewController.swift */; };
 		9FD074D11ED4352C00473CEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD074CF1ED4352C00473CEE /* Main.storyboard */; };
@@ -45,6 +48,9 @@
 		90E496B8E391B8E5D3D16037 /* Pods_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		954555C22F349A13BC1A75A0 /* Pods-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoTests/Pods-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		9C044DC8C1AC5D1B9B2836C4 /* Pods-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoUITests/Pods-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9FB4506C1ED7C88400B92272 /* RKError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKError.swift; sourceTree = "<group>"; };
+		9FB4506E1ED8088900B92272 /* RKCredentialTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCredentialTests.swift; sourceTree = "<group>"; };
+		9FB450711ED80FBB00B92272 /* RKOAuthManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKOAuthManagerTests.swift; sourceTree = "<group>"; };
 		9FD074C81ED4352C00473CEE /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD074CB1ED4352C00473CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FD074CD1ED4352C00473CEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				9FD074E01ED4352C00473CEE /* DemoTests.swift */,
+				9FB4506E1ED8088900B92272 /* RKCredentialTests.swift */,
+				9FB450711ED80FBB00B92272 /* RKOAuthManagerTests.swift */,
 				9FD074E21ED4352C00473CEE /* Info.plist */,
 			);
 			path = DemoTests;
@@ -162,6 +170,7 @@
 			children = (
 				9FD074FC1ED438E600473CEE /* RKOAuthManager.swift */,
 				9FD074FA1ED4364B00473CEE /* RKCredential.swift */,
+				9FB4506C1ED7C88400B92272 /* RKError.swift */,
 			);
 			name = Cerberus;
 			path = ../../Cerberus;
@@ -464,6 +473,7 @@
 				9FD074FD1ED438E600473CEE /* RKOAuthManager.swift in Sources */,
 				9FD074CE1ED4352C00473CEE /* ViewController.swift in Sources */,
 				9FD074FB1ED4364B00473CEE /* RKCredential.swift in Sources */,
+				9FB4506D1ED7C88400B92272 /* RKError.swift in Sources */,
 				9FD074CC1ED4352C00473CEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +483,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD074E11ED4352C00473CEE /* DemoTests.swift in Sources */,
+				9FB4506F1ED8088900B92272 /* RKCredentialTests.swift in Sources */,
+				9FB450721ED80FBB00B92272 /* RKOAuthManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
