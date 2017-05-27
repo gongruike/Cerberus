@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RKError: Error {
+enum RKOAuthError: Error {
     
     case invalidResponseType
     case misssingResponseParameter
@@ -21,7 +21,7 @@ enum RKError: Error {
     
     case unknown
     
-    static func errorFrom(response: [String: Any]) -> RKError {
+    static func errorFrom(response: [String: Any]) -> RKOAuthError {
         
         guard let error = response["error"] as? String else { return .unknown }
         
@@ -41,7 +41,7 @@ enum RKError: Error {
     }
 }
 
-extension RKError: LocalizedError {
+extension RKOAuthError: LocalizedError {
 
     // Copy from AFOAuth2Manager
     public var errorDescription: String? {

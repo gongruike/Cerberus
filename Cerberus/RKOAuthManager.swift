@@ -19,7 +19,7 @@ open class RKOAuthManager {
     
     open var clientSecret: String?
     
-    open var useHTTPBasicAuthentication: Bool = false
+    open var useHTTPBasicAuthentication: Bool = true
     
     public convenience init(clientID: String) {
         
@@ -33,6 +33,7 @@ open class RKOAuthManager {
         
         self.clientID = clientID
         self.session = SessionManager(configuration: configuration)
+        self.session.startRequestsImmediately = false
     }
     
     @discardableResult
@@ -90,42 +91,42 @@ open class RKOAuthManager {
             headers: headers
         )
         request.responseJSON { (dataResponse) in
-            
-            print(dataResponse.debugDescription)
-            
-            switch dataResponse.result {
-            case .success(let value):
+            // Handle response in main thread
+            DispatchQueue.main.async {
                 
-                if let json = value as? [String: Any] {
-
-                    if let _ = json["error"] as? String {
-                        completion(Result.failure(RKError.errorFrom(response: json)))
-                        return
-                    }
-                    
-                    if let accessToken = json["access_token"] as? String, let tokenType = json["token_type"] as? String {
-                        
-                        let credential = RKCredential(accessToken: accessToken, tokenType: tokenType)
-                        
-                        credential.refreshToken = json["refresh_token"] as? String
-                        credential.scope = json["scope"] as? String
-                        
-                        if let timeInterval = json["expires_in"] as? TimeInterval {
-                            credential.expirationDate = Date(timeIntervalSinceNow: timeInterval)
+                switch dataResponse.result {
+                case .success(let value):
+                    // Check response type
+                    if let json = value as? [String: Any] {
+                        // Handle error
+                        if let _ = json["error"] as? String {
+                            completion(Result.failure(RKOAuthError.errorFrom(response: json)))
+                            return
                         }
-                        
-                        completion(Result.success(credential))
+                        // Get token
+                        if let accessToken = json["access_token"] as? String, let tokenType = json["token_type"] as? String {
+                            let credential = RKCredential(accessToken: accessToken, tokenType: tokenType)
+                            
+                            credential.refreshToken = json["refresh_token"] as? String
+                            credential.scope = json["scope"] as? String
+                            
+                            if let timeInterval = json["expires_in"] as? TimeInterval {
+                                credential.expirationDate = Date(timeIntervalSinceNow: timeInterval)
+                            }
+                            
+                            completion(Result.success(credential))
+                        } else {
+                            completion(Result.failure(RKOAuthError.misssingResponseParameter))
+                        }
                     } else {
-                        completion(Result.failure(RKError.misssingResponseParameter))
+                        completion(Result.failure(RKOAuthError.invalidResponseType))
                     }
-                } else {
-                    completion(Result.failure(RKError.invalidResponseType))
+                case .failure(let error):
+                    completion(Result.failure(error))
                 }
-            case .failure(let error):
-                completion(Result.failure(error))
             }
-        }
-        
+        }.resume()
+        //
         return request
     }
     
